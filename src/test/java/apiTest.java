@@ -14,4 +14,18 @@ public class apiTest {
         String property = js.get("origin");
         Assertions.assertTrue(response.contains(property));
     }
+
+    @Test
+    void verifyQueryParams() {
+        RestAssured.baseURI = "https://httpbin.org";
+        String response = given().queryParam("test", "1234").queryParam("user", "opinilla").when()
+                .get("response-headers").then().assertThat().statusCode(200).extract().response().asString();
+        JsonPath js = new JsonPath(response);
+        String test = js.get("test");
+        String user = js.get("user");
+        Assertions.assertTrue(response.contains(test));
+        Assertions.assertTrue(response.contains(user));
+
+    }
+
 }
