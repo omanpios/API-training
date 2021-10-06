@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
     strategy:
       fail-fast: false
    
@@ -33,4 +33,3 @@ jobs:
         with:
           name: 'Test Report'
           path: './target/surefire-reports/apiTest.txt' 
-          
