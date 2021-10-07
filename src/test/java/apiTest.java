@@ -1,8 +1,7 @@
-import org.apache.struts.taglib.logic.NotEmptyTag;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import groovyjarjarantlr4.v4.runtime.misc.NotNull;
 import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
 import io.restassured.path.json.JsonPath;
@@ -20,14 +19,9 @@ public class apiTest {
     @Test
     void verifyQueryParams() {
         RestAssured.baseURI = "https://httpbin.org";
-        String response = given().queryParam("test", "1234").queryParam("user", "opinilla").when()
-                .get("response-headers").then().assertThat().statusCode(200).assertThat().extract().response()
-                .asString();
-        JsonPath js = new JsonPath(response);
-        String test = js.get("test");
-        String user = js.get("user");
-        Assertions.assertEquals(test, "1234");
-        Assertions.assertEquals(user, "opinilla");
+        given().queryParam("test", "1234").queryParam("user", "opinilla").when().get("response-headers").then()
+                .assertThat().statusCode(200).body("test", Matchers.notNullValue())
+                .body("user", Matchers.notNullValue());
 
     }
 
