@@ -20,8 +20,8 @@ public class apiTest {
     void verifyQueryParams() {
         RestAssured.baseURI = "https://httpbin.org";
         given().queryParam("test", "1234").queryParam("user", "opinilla").when().get("response-headers").then()
-                .assertThat().statusCode(200).body("test", Matchers.notNullValue())
-                .body("user", Matchers.notNullValue());
+                .assertThat().statusCode(200).body("test", Matchers.is("1234"))
+                .body("user", Matchers.is("opinilla"));
 
     }
 
