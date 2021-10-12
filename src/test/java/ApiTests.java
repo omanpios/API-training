@@ -6,7 +6,7 @@ import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
 import io.restassured.path.json.JsonPath;
 
-public class apiTest {
+public class ApiTests {
     @Test
     void verifyStatusCodeAndProperty() {
         RestAssured.baseURI = "https://httpbin.org";
