@@ -11,7 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
-   
+    env:
+      accessToken: ${{ secrets.TOKEN }}
+            
     steps:
       - name: Checkout
         uses: actions/checkout@v2

@@ -6,7 +6,7 @@ import io.restassured.RestAssured;
 import static io.restassured.RestAssured.*;
 import io.restassured.path.json.JsonPath;
 
-public class apiTest {
+public class ApiTests {
     @Test
     void verifyStatusCodeAndProperty() {
         RestAssured.baseURI = "https://httpbin.org";
@@ -20,9 +20,7 @@ public class apiTest {
     void verifyQueryParams() {
         RestAssured.baseURI = "https://httpbin.org";
         given().queryParam("test", "1234").queryParam("user", "opinilla").when().get("response-headers").then()
-                .assertThat().statusCode(200).body("test", Matchers.is("1234"))
-                .body("user", Matchers.is("opinilla"));
+                .assertThat().statusCode(200).body("test", Matchers.is("1234")).body("user", Matchers.is("opinilla"));
 
     }
-
 }
